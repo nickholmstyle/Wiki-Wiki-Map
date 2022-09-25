@@ -3,9 +3,11 @@ const router  = express.Router();
 
 
 module.exports = (db) => {
+
 //////////////////////////////////////////
 // GET Request for the Login Page //
 //////////////////////////////////////////
+
   router.get("/login", (req, res) => {
     res.render("login");
     let query = `SELECT * FROM users`;
@@ -14,6 +16,7 @@ module.exports = (db) => {
       const users = data.rows;
     })
   });
+
 //////////////////////////////////////////
 // POST Request for the Login Page //
 //////////////////////////////////////////

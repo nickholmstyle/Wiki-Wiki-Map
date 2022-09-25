@@ -4,15 +4,19 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+
 //////////////////////////////////////////
 // GET Request for the Register Page //
 //////////////////////////////////////////
+
   router.get("register", (req, res) => {
     res.render("/register");
   });
+
 //////////////////////////////////////////
 // POST Request for the Register Page //
 //////////////////////////////////////////
+
   router.post("/request", (req, res) => {
     let values = [req.body.email, req.body.password];
     let query = /*`SELECT * FROM users2 WHERE email = $1 AND password = $2`;*/;
