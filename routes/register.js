@@ -5,43 +5,42 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 const express = require('express');
-const cookieSession = require("cookie-session");
 const router  = express.Router();
 
+module.exports = (db) => {
 //////////////////////////////////////////
 // GET Request for the Register Page //
 //////////////////////////////////////////
-
-app.get('/register', (req, res) => {
-  if (req.session.user_id) {
-    return res.redirect('/communitymaps AND favorite page');
-  }
-  const templateVars = { user: users[req.session.user_id] };
-  res.render('register', templateVars);
-});
+  router.get("register", (req, res) => {
+    res.render("/register");
+  });
 //////////////////////////////////////////
-// POST Request from the Register Page //
+// POST Request for the Register Page //
 //////////////////////////////////////////
+  router.post("/", (req, res) => {
+    let values = [req.body.email, req.body.password];
+    let query = /*`SELECT * FROM users2 WHERE email = $1 AND password = $2`;*/
+    let result;
+    //compare the data to our db first
+    db.query(query, values)
+      .then(data => {
+      result = data.rows;
+      if (result.length === 0) {
+        //if the results come back with 0 matches, assign new values to variable and insert into table
+        let newVals = [req.body.name, req.body.email, req.body.password];
+        let insertQuery = /*`INSERT INTO users (name, email, password) VALUES ($1,$2,$3) RETURNING *`;*/
+        db.query(insertQuery, newVals)
+        .then(newVals => {
+          req.session.user_id = newVals.rows[0].id; //may need to change the userid  depending on db name
+          res.redirect('/community and Favorite maps');
+        })
+      } else {
+        res.send('Email is already in use.');
+      }
+    })
+  });
 
-app.post('/register', (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-
-  //error handling, if user and password are zero return error
-  if (email.length === 0 || password.length === 0) {
-    return res.status(400).send(`400 error - Missing E-mail or Password`);
-  }
-
-  //define an emailfinder function to check the email against the db, to see if the email already exists.
-
-
-  //password added in to the password property
-  const user = { name, email, password, id }
-
-  users[id] = user;
-  req.session.user_id = id;
-  res.redirect(`/communitymapsandfavorites`);
-});
+  return router;
+}
 
 module.exports = router;

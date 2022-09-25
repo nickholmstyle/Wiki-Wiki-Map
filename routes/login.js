@@ -1,11 +1,37 @@
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 
 
-  // GET Route for the landing page
-  app.get('/', (req, res) => {
-    const templateVars = {user: null}
-    res.render("/", templateVars)
+module.exports = (db) => {
+//////////////////////////////////////////
+// GET Request for the Login Page //
+//////////////////////////////////////////
+  router.get("/login", (req, res) => {
+    res.render("login");
+    let query = `SELECT * FROM users`;
+    db.query(query)
+    .then(data => {
+      const users = data.rows;
+    })
+  });
+//////////////////////////////////////////
+// POST Request for the Login Page //
+//////////////////////////////////////////
+  router.post("/login", (req, res) => {
+    let query = /*`SELECT * FROM users`; CHANGE USERS WHEN WE KNOW THE DB NAME*/
+    db.query(query)
+    .then(data => {
+      const users = data.rows;
+      users.forEach(user => {
+        if (user.email === req.body.email && user.password === req.body.password) {
+          req.session.user_id = user.id;
+          res.redirect('/community maps and favorites');
+        }
+      });
+    })
   });
 
-  //INDEX Page does not need routing except to original page because the page is just going to use link tags to move to login and register
+  //return router;
+};
+
+module.exports = router;

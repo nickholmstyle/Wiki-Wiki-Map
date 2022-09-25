@@ -3,9 +3,15 @@ const router = express.Router();
 
 
   // GET Route for the landing page
-  app.get('/', (req, res) => {
-    const templateVars = {user: null}
-    res.render("/", templateVars)
-  });
 
-  //INDEX Page does not need routing except to original page because the page is just going to use link tags to move to login and register
+module.exports = (db) => {
+  router.get("/", (req, res) => {
+    if (req.session.user_id) {
+      res.redirect("community Maps and Favorites"); //change this
+    } else {
+      res.redirect("/");
+    }
+    })
+
+}
+  module.exports = router;
