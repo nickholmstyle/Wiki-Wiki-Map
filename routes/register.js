@@ -1,8 +1,4 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into /users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+
  */
 const express = require('express');
 const router  = express.Router();
@@ -17,14 +13,13 @@ module.exports = (db) => {
 //////////////////////////////////////////
 // POST Request for the Register Page //
 //////////////////////////////////////////
-  router.post("/", (req, res) => {
+  router.post("/request", (req, res) => {
     let values = [req.body.email, req.body.password];
-    let query = /*`SELECT * FROM users2 WHERE email = $1 AND password = $2`;*/
-    let result;
+    let query = /*`SELECT * FROM users2 WHERE email = $1 AND password = $2`;*/;
     //compare the data to our db first
     db.query(query, values)
       .then(data => {
-      result = data.rows;
+      let result = data.rows;
       if (result.length === 0) {
         //if the results come back with 0 matches, assign new values to variable and insert into table
         let newVals = [req.body.name, req.body.email, req.body.password];
