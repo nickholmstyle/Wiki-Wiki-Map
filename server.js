@@ -65,6 +65,12 @@ app.get('/', (req, res) => {
   res.render('index', templateVars);
 });
 
+//clears the username cookie from memory
+app.post("/logout", (req, res) => {
+  req.session = null;
+    res.redirect("/urls");
+  });
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
