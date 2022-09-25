@@ -6,6 +6,16 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
+
+// for cookie encryption
+const cookieSession = require("cookie-session");
+
+// for cookie encryption
+app.use(cookieSession({
+  name: 'session',
+  keys: ["hellothereguys123"]
+}));
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -47,8 +57,12 @@ app.use('/register',registerRoutes)
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+// Renders the homepage
 app.get('/', (req, res) => {
-  res.render('index');
+  const templateVars = {
+    userId: req.session.user_id
+  };
+  res.render('index', templateVars);
 });
 
 app.listen(PORT, () => {
