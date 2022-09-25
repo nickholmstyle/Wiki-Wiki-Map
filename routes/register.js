@@ -7,7 +7,7 @@ module.exports = (db) => {
 // GET Request for the Register Page //
 //////////////////////////////////////////
 
-  router.get("register", (req, res) => {
+  router.get('/', (req, res) => {
     res.render("/register");
   });
 
@@ -15,7 +15,7 @@ module.exports = (db) => {
 // POST Request for the Register Page //
 //////////////////////////////////////////
 
-  router.post("/request", (req, res) => {
+  router.post('/', (req, res) => {
     let values = [req.body.email, req.body.password];
     let query = /*`SELECT * FROM users2 WHERE email = $1 AND password = $2`;*/;
     //compare the data to our db first

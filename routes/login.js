@@ -8,7 +8,7 @@ module.exports = (db) => {
 // GET Request for the Login Page //
 //////////////////////////////////////////
 
-  router.get("/login", (req, res) => {
+  router.get('/', (req, res) => {
     res.render("login");
     let query = `SELECT * FROM users`;
     db.query(query)
@@ -20,7 +20,7 @@ module.exports = (db) => {
 //////////////////////////////////////////
 // POST Request for the Login Page //
 //////////////////////////////////////////
-  router.post("/login", (req, res) => {
+  router.post('/', (req, res) => {
     let query = /*`SELECT * FROM users`; CHANGE USERS WHEN WE KNOW THE DB NAME*/
     db.query(query)
     .then(data => {
