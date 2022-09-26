@@ -17,7 +17,7 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     let values = [req.body.email, req.body.password];
-    let query = /*`SELECT * FROM users2 WHERE email = $1 AND password = $2`;*/;
+    let query = /*`SELECT * FROM users2 WHERE email = $1 AND password = $2`;*/
     //compare the data to our db first
     db.query(query, values)
       .then(data => {

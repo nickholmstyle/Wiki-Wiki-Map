@@ -9,6 +9,8 @@ const morgan = require('morgan');
 
 // for cookie encryption
 const cookieSession = require("cookie-session");
+const PORT = process.env.PORT || 8080;
+const app = express();
 
 // for cookie encryption
 app.use(cookieSession({
@@ -16,8 +18,6 @@ app.use(cookieSession({
   keys: ["hellothereguys123"]
 }));
 
-const PORT = process.env.PORT || 8080;
-const app = express();
 
 app.set('view engine', 'ejs');
 
@@ -44,7 +44,6 @@ const usersRoutes = require('./routes/users');
 const registerRoutes = require('./routes/register');
 const loginRoute = require('./routes/login');
 const indexRoute = require('./routes/index');
-const registerRoutes = require('./routes/register');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
