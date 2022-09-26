@@ -9,8 +9,8 @@ module.exports = (db) => {
 // GET Request for the Register Page //
 //////////////////////////////////////////
 
-  router.get("register", (req, res) => {
-    res.render("/register");
+  router.get('/', (req, res) => {
+    res.render('register');
   });
 
 //////////////////////////////////////////
