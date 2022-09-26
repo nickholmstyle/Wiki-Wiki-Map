@@ -6,7 +6,7 @@
 
 
 INSERT INTO locations (title, description, image, latitude, longitude, map_id)
-VALUES ("Maha's", "Egyptian brunch spot", 'https://images.app.goo.gl/zDf4iSGhCeTWaHDfA', 43.6717134, -79.3307205, 1);
+VALUES ("Mahas", "Egyptian brunch spot", 'https://images.app.goo.gl/zDf4iSGhCeTWaHDfA', 43.6717134, -79.3307205, 1);
 
 INSERT INTO locations (title, description, image, latitude, longitude, map_id)
 VALUES ("Khmer Thai", "Cambodian family that makes the best food and wants to retire but the neighborhood won't let them!", 'https://images.app.goo.gl/UivazTAb5goKUFDH8', 43.6790045, -79.4404215, 1);

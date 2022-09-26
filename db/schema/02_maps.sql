@@ -10,4 +10,4 @@ CREATE TABLE  maps (
   longitude FLOAT NOT NULL,
   zoom INTEGER DEFAULT 13,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
-)
+);
